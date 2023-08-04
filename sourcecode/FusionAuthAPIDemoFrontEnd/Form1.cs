@@ -73,6 +73,7 @@ namespace FusionDemo
             LogStatus($"{sw.Elapsed} (hh:mm:ss:ms)");
         }
 
+        //tag::btnAddUserToGroup[]
         private async void btnAddUserToGroup_Click(object sender, EventArgs e)
         {
             //FusionAuthClient is a class that contains the logic to call  the FusionAuth APIs
@@ -112,7 +113,8 @@ namespace FusionDemo
                 LogResults($"User and/or group data provided is invalid");
             }
         }
-
+        //end::btnAddUserToGroup[]
+        
         private bool IsUserValid(User userToCreate)
         {
             //custom validation code to go here
