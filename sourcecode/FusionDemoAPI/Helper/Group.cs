@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace FusionDemoAPI.Helper
 {
-    //For Group object
     public class Group
     {
         public string ID;
@@ -15,5 +14,4 @@ namespace FusionDemoAPI.Helper
         [JsonProperty(PropertyName = "userId")]
         public string UserID;
     }
-
 }
