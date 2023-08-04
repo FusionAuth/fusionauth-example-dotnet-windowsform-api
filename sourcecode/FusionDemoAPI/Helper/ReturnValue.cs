@@ -1,4 +1,3 @@
-﻿
 namespace FusionDemoAPI.Helper
 {
     public class ReturnValue
