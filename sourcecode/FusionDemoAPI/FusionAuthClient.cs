@@ -32,7 +32,7 @@ namespace FusionDemoAPI
             return httpClient;
         }
 
-       
+        //tag::CreateUser[]
         public async Task<ReturnValue> CreateUser(User userToCreate)
         {
             //returns HttpClient with correct setting for instance
@@ -74,7 +74,8 @@ namespace FusionDemoAPI
 
             return returnVal;
         }
-
+        //end::CreateUser[]
+        
         public async Task<ReturnValue> DeleteUser(string userToDelete)
         {
             HttpClient httpClient = GetClient();
