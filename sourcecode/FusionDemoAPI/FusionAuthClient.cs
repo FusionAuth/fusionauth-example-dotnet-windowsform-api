@@ -111,6 +111,7 @@ namespace FusionDemoAPI
             return returnVal;
         }
 
+        //tag::AddUserToGroup[] 
         public async Task<ReturnValue> AddUserToGroup(List<Group> groups)
         {
             //returns HttpClient with correct setting for instance
@@ -155,7 +156,8 @@ namespace FusionDemoAPI
 
             return returnVal;
         }
-
+        //end::AddUserToGroup[] 
+        
         private string FormatGroupUserJSON(List<Group> groups)
         {
             string returnValue = "";
