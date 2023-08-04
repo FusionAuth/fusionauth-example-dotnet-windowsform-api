@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using FusionDemoAPI;
-
-using static FusionDemoAPI.Helper;
+using FusionDemoAPI.Helper;
 
 namespace FusionDemo
 {

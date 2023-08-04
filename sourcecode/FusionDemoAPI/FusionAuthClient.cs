@@ -7,21 +7,31 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static FusionDemoAPI.Helper;
+using FusionDemoAPI.Helper;
+using System.Configuration;
 
 namespace FusionDemoAPI
 {
 
     public class FusionAuthClient
     {
+        private string FUSIONAUTH_HOST = "";
+        private string CLIENT_SECRET = "";
+
+        public FusionAuthClient()
+        {
+            FUSIONAUTH_HOST = ConfigurationManager.AppSettings.Get("FusionAuthUrl");
+            CLIENT_SECRET = ConfigurationManager.AppSettings.Get("ClientSecret");
+        }
+
         private HttpClient GetClient()
         {
             HttpClient httpClient = new HttpClient();
             //The Constants class contains the infromation needed for the URL and API KEY.
             //i.e BASE_URL = "http://localhost:9011";
             //i.e. API_KEY = "XLE1_6EawwxDsnM9x81uOqbxaOyO759aMXM25_edSThyPCHPsBT_8M9K";
-            httpClient.BaseAddress = new Uri(Constants.BASE_URL);
-            httpClient.DefaultRequestHeaders.Add("Authorization", Constants.API_KEY);
+            httpClient.BaseAddress = new Uri(FUSIONAUTH_HOST);
+            httpClient.DefaultRequestHeaders.Add("Authorization", CLIENT_SECRET);
             return httpClient;
         }
 
@@ -45,7 +55,7 @@ namespace FusionDemoAPI
                 var payload = JsonConvert.SerializeObject(userToCreate);
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await httpClient.PostAsync($"{Constants.BASE_URL}{apiURL}", content);
+                HttpResponseMessage response = await httpClient.PostAsync($"{FUSIONAUTH_HOST}{apiURL}", content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -80,7 +90,7 @@ namespace FusionDemoAPI
             {
                 string apiURL = $"/api/user/{userToDelete}?hardDelete=true";
 
-                HttpResponseMessage response = await httpClient.DeleteAsync($"{Constants.BASE_URL}{apiURL}").ConfigureAwait(continueOnCapturedContext: false);
+                HttpResponseMessage response = await httpClient.DeleteAsync($"{FUSIONAUTH_HOST}{apiURL}").ConfigureAwait(continueOnCapturedContext: false);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -122,7 +132,7 @@ namespace FusionDemoAPI
                 var payload = FormatGroupUserJSON(groups);
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await httpClient.PostAsync($"{Constants.BASE_URL}{apiURL}", content);
+                HttpResponseMessage response = await httpClient.PostAsync($"{FUSIONAUTH_HOST}{apiURL}", content);
 
                 if (response.IsSuccessStatusCode)
                 {

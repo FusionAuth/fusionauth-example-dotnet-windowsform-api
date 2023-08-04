@@ -35,6 +35,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FusionAuthClient.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="Helper\Group.cs" />
+    <Compile Include="Helper\MembersRoot.cs" />
+    <Compile Include="Helper\ReturnValue.cs" />
+    <Compile Include="Helper\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
