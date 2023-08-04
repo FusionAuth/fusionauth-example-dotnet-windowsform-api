@@ -27,9 +27,6 @@ namespace FusionDemoAPI
         private HttpClient GetClient()
         {
             HttpClient httpClient = new HttpClient();
-            //The Constants class contains the infromation needed for the URL and API KEY.
-            //i.e BASE_URL = "http://localhost:9011";
-            //i.e. API_KEY = "XLE1_6EawwxDsnM9x81uOqbxaOyO759aMXM25_edSThyPCHPsBT_8M9K";
             httpClient.BaseAddress = new Uri(FUSIONAUTH_HOST);
             httpClient.DefaultRequestHeaders.Add("Authorization", CLIENT_SECRET);
             return httpClient;
