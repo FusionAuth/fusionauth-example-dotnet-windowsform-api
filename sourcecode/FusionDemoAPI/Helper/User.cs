@@ -2,7 +2,6 @@
 
 namespace FusionDemoAPI.Helper
 {
-    //For User object
     public class User
     {
         [JsonProperty(PropertyName = "user")]
