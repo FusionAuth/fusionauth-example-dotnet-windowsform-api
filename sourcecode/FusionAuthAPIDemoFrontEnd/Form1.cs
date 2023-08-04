@@ -14,6 +14,7 @@ namespace FusionDemo
             InitializeComponent();
         }
 
+        //tag::btnCreateUser[]
         private async void btnCreateUser_Click(object sender, EventArgs e)
         {
             //FusionAuthClient is a class that contains the logic to call the FusionAuth APIs
@@ -51,7 +52,7 @@ namespace FusionDemo
                 LogResults($"User data provided is invalid");
             }
         }
-
+        //end::btnCreateUser[]
 
         private async void txtDeleteUser_Click(object sender, EventArgs e)
         {
