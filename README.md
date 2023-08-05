@@ -19,7 +19,7 @@ Setup:
 		> **_Note:_** If you ever want to reset the FusionAuth system, delete the volumes created by docker-compose by executing docker-compose down -v, then re-run docker-compose up -d.
 
 	- See [How to Run FusionAuth](https://fusionauth.io/docs/) in the FusionAuth documentation for alternatives.
-- You will need to update the `App.config` file to work with your environment.
+- If you are using the docker image associated with this project, you should not have to update anything.  However, if you are using another instance of a FusionAuth you will need to update the `App.config` file to work with your environment.
 	- FusionAuthUrl is the location of the FusionAuth instance you are running.
 		- This will be [http://localhost:9011](http://localhost:9011) if you are running the docker image above. 
 	- FusionAuthAPIKey is the API key for the instance .
