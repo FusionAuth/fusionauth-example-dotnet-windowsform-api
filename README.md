@@ -36,7 +36,7 @@ This applicaiton can do 3 things.
 - Delete User
 	- Click the `Populate Users` button to fill the combo box with users.
 	- Select a user.
-	- Clicke the `Delete User` button.
+	- Click the `Delete User` button.
 - Add a user to Group
 	- Click the `Populate Users and Groups` button to fill the combo box with users.
 	- Select a group you want to add the user to and then select a user.
