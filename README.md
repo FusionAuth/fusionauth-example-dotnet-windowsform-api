@@ -11,7 +11,7 @@
 		```
 		docker-compose up -d
 		```
-		- You will not need to access the FusionAuth admin interface for this demo, However, if needed or desired here are the credentials.
+		- The credentials for the instanse:
 			- Url: 	[http://localhost:9011](http://localhost:9011) 
 			- Admin Username: admin@example.com
 			- Admin Password: password
@@ -39,8 +39,9 @@ This applicaiton can do 3 things.
 	- Click the `Delete User` button.
 - Add a user to Group
 	- Click the `Populate Users and Groups` button to fill the combo box with users.
+		- You will need to create groups in the FusionAuth Admin Interface before they will populate in the application.
 	- Select a group you want to add the user to and then select a user.
-	- Clicke the `Add User to Group` button.
+	- Click the `Add User to Group` button.
 
 Screenshot:
 
