@@ -7,7 +7,7 @@ using FusionDemoAPI.Helper;
 
 namespace FusionDemo
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         public enum PopulateType
         {
@@ -15,7 +15,7 @@ namespace FusionDemo
             Groups = 1
         }
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -75,6 +75,7 @@ namespace FusionDemo
                 LogStatus("User Deletion Complete");
                 LogStatus($"{sw.Elapsed} (hh:mm:ss:ms)");
                 PopulateComboBox(cmbUsersToAddToGroup, PopulateType.Users);
+                PopulateComboBox(cmbUsersToDelete, PopulateType.Users);
             }
             else
             {

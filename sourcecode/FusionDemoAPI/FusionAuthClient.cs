@@ -21,7 +21,7 @@ namespace FusionDemoAPI
         public FusionAuthClient()
         {
             FUSIONAUTH_HOST = ConfigurationManager.AppSettings.Get("FusionAuthUrl");
-            CLIENT_SECRET = ConfigurationManager.AppSettings.Get("ClientSecret");
+            CLIENT_SECRET = ConfigurationManager.AppSettings.Get("FusionAuthAPIKey");
         }
 
         private HttpClient GetClient()
