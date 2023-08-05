@@ -1,11 +1,11 @@
 # FusionAuthUserAPIDemo
 
-Considerations
+## Considerations
 - This is a sample Windows Form application utilizing the FusionAuth APIs in C#.
 	- This does not run on Visual Studio for Mac.
 - This is a sample application written for a blog post that utilizes the FusionAuth APIs.
 
-Setup:
+## Setup
 - You will need a working version of a FusionAuth Server to point the application to. 
 	- In the root directory of this repo you'll find a Docker compose file (docker-compose.yml) and an environment variables configurtion file (.env).  Assuming you have Docker installed on your machine, you can stand up FusionAuth on your manchine with:
 		```
@@ -25,7 +25,7 @@ Setup:
 	- FusionAuthAPIKey is the API key for the instance .
 		- See [Managing API Keys](https://fusionauth.io/docs/v1/tech/apis/authentication#managing-api-keys) in the FusionAuth documentation if needed.
 
-Usage:
+## Usage
 
 Once the `App.config` settings are configured correctly the application will be able to connect to the FusionAuth server specified.  
 
