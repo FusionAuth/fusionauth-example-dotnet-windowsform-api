@@ -1,4 +1,4 @@
-# FusionAuthUserAPIDemo
+# Example Windows Forms Applicaiton Using FusionAuth APIs
 
 ## Considerations
 - This is a sample Windows Form application utilizing the FusionAuth APIs in C#.
@@ -26,7 +26,6 @@
 		- See [Managing API Keys](https://fusionauth.io/docs/v1/tech/apis/authentication#managing-api-keys) in the FusionAuth documentation if needed.
 
 ## Usage
-
 Once the `App.config` settings are configured correctly the application will be able to connect to the FusionAuth server specified.  
 
 This applicaiton can do 3 things.
