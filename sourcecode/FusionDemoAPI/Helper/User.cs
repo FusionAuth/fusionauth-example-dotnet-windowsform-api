@@ -10,9 +10,9 @@ namespace FusionDemoAPI.Helper
 
     public class UserProperties
     {
-        [JsonProperty(PropertyName = "firstname")]
+        [JsonProperty(PropertyName = "firstName")]
         public string FirstName;
-        [JsonProperty(PropertyName = "lastname")]
+        [JsonProperty(PropertyName = "lastName")]
         public string LastName;
         [JsonProperty(PropertyName = "email")]
         public string Email;

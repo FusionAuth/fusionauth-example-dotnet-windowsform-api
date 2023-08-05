@@ -157,7 +157,113 @@ namespace FusionDemoAPI
             return returnVal;
         }
         //end::AddUserToGroup[] 
-        
+
+        //tag::GetDictionaryOfUsers[] 
+        public async Task<Dictionary<string, string>> GetDictionaryOfUsers()
+        {
+            //returns HttpClient with correct setting for instance
+            HttpClient httpClient = GetClient();
+
+            Dictionary<string, string> returnVal = new Dictionary<string, string>();
+
+            try
+            {
+                //set the endpoint for creating a user
+                string apiURL = $"/api/user/search";
+
+                var payload = @"{
+                  ""search"": {
+                    ""numberOfResults"": 25,
+                    ""queryString"": ""email = *"",
+                    ""sortFields"": [
+                      {
+                        ""name"": ""fullName"",
+                        ""order"": ""asc""
+                      }
+                    ],
+                    ""startRow"": 0
+                  }
+                }";
+
+                var content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await httpClient.PostAsync($"{FUSIONAUTH_HOST}{apiURL}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    JObject result = JObject.Parse(responseBody);
+                    if (result.Count > 0)
+                    {
+                        foreach(var user in result["users"])
+                        {
+                            returnVal.Add(user["id"].ToString(), user["lastName"].ToString() + ", " + user["firstName"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"There was an error in the request {ex.Message}");
+            }
+
+
+            return returnVal;
+        }
+        //end::GetDictionaryOfUsers[] 
+
+        //tag::GetDictionaryOfGroups[] 
+        public async Task<Dictionary<string, string>> GetDictionaryOfGroups()
+        {
+            //returns HttpClient with correct setting for instance
+            HttpClient httpClient = GetClient();
+
+            Dictionary<string, string> returnVal = new Dictionary<string, string>();
+
+            try
+            {
+                //set the endpoint for creating a user
+                string apiURL = $"/api/group/search";
+
+                var payload = @"{
+                  ""search"": {
+                    ""name"": ""*"",
+                    ""numberOfResults"": 25,
+                    ""orderBy"": ""name"",
+                    ""startRow"": 0
+                  }
+                }
+                ";
+
+                var content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await httpClient.PostAsync($"{FUSIONAUTH_HOST}{apiURL}", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    JObject result = JObject.Parse(responseBody);
+                    if (result.Count > 0)
+                    {
+                        foreach (var group in result["groups"])
+                        {
+                            returnVal.Add(group["id"].ToString(), group["name"].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"There was an error in the request {ex.Message}");
+            }
+
+
+            return returnVal;
+        }
+        //end::GetDictionaryOfGroups[] 
+
         private string FormatGroupUserJSON(List<Group> groups)
         {
             string returnValue = "";

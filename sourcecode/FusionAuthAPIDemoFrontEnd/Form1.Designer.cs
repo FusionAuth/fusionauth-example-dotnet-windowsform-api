@@ -33,11 +33,8 @@ namespace FusionDemo
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtGroupIDToAddTo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtUserIDToAddToGroup = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtUserToDelete = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,6 +54,11 @@ namespace FusionDemo
             this.rtbStatus = new System.Windows.Forms.RichTextBox();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.rtbResults = new System.Windows.Forms.RichTextBox();
+            this.cmbUsersToDelete = new System.Windows.Forms.ComboBox();
+            this.btnGetUsers = new System.Windows.Forms.Button();
+            this.btnPopulateUsersAndGroups = new System.Windows.Forms.Button();
+            this.cmbGroups = new System.Windows.Forms.ComboBox();
+            this.cmbUsersToAddToGroup = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,14 +66,19 @@ namespace FusionDemo
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cmbUsersToAddToGroup);
+            this.panel1.Controls.Add(this.cmbGroups);
+            this.panel1.Controls.Add(this.btnPopulateUsersAndGroups);
+            this.panel1.Controls.Add(this.btnGetUsers);
+            this.panel1.Controls.Add(this.cmbUsersToDelete);
+            this.panel1.Controls.Add(this.btnAddUserToGroup);
             this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.btnDeleteUser);
             this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.btnCreateUser);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.txtGroupIDToAddTo);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.txtUserIDToAddToGroup);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.txtUserToDelete);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.label4);
@@ -84,7 +91,7 @@ namespace FusionDemo
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(948, 159);
+            this.panel1.Size = new System.Drawing.Size(948, 201);
             this.panel1.TabIndex = 0;
             // 
             // label10
@@ -117,14 +124,6 @@ namespace FusionDemo
             this.label8.TabIndex = 16;
             this.label8.Text = "Create User";
             // 
-            // txtGroupIDToAddTo
-            // 
-            this.txtGroupIDToAddTo.Location = new System.Drawing.Point(631, 45);
-            this.txtGroupIDToAddTo.Name = "txtGroupIDToAddTo";
-            this.txtGroupIDToAddTo.Size = new System.Drawing.Size(222, 20);
-            this.txtGroupIDToAddTo.TabIndex = 15;
-            this.txtGroupIDToAddTo.Text = "dd771a01-16f5-4f89-a392-9c367d89daa4";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -134,14 +133,6 @@ namespace FusionDemo
             this.label7.TabIndex = 14;
             this.label7.Text = "GroupID";
             // 
-            // txtUserIDToAddToGroup
-            // 
-            this.txtUserIDToAddToGroup.Location = new System.Drawing.Point(631, 73);
-            this.txtUserIDToAddToGroup.Name = "txtUserIDToAddToGroup";
-            this.txtUserIDToAddToGroup.Size = new System.Drawing.Size(222, 20);
-            this.txtUserIDToAddToGroup.TabIndex = 13;
-            this.txtUserIDToAddToGroup.Text = "25b3e334-4055-4d7e-bf93-9f5e8861b4d5";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -150,13 +141,6 @@ namespace FusionDemo
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 12;
             this.label6.Text = "User ID";
-            // 
-            // txtUserToDelete
-            // 
-            this.txtUserToDelete.Location = new System.Drawing.Point(335, 45);
-            this.txtUserToDelete.Name = "txtUserToDelete";
-            this.txtUserToDelete.Size = new System.Drawing.Size(222, 20);
-            this.txtUserToDelete.TabIndex = 11;
             // 
             // label5
             // 
@@ -190,7 +174,7 @@ namespace FusionDemo
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 20);
             this.txtEmail.TabIndex = 7;
-            this.txtEmail.Text = "milton.waddams@initech.com";
+            this.txtEmail.Text = "joe.limitedaccess@customburger.com";
             // 
             // txtLastName
             // 
@@ -198,7 +182,7 @@ namespace FusionDemo
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(160, 20);
             this.txtLastName.TabIndex = 6;
-            this.txtLastName.Text = "Waddams";
+            this.txtLastName.Text = "Limited-Access";
             // 
             // txtFirstName
             // 
@@ -206,7 +190,7 @@ namespace FusionDemo
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(160, 20);
             this.txtFirstName.TabIndex = 5;
-            this.txtFirstName.Text = "Milton";
+            this.txtFirstName.Text = "Joe";
             // 
             // label3
             // 
@@ -238,7 +222,7 @@ namespace FusionDemo
             // btnClear
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear.Location = new System.Drawing.Point(20, 356);
+            this.btnClear.Location = new System.Drawing.Point(12, 16);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(136, 23);
             this.btnClear.TabIndex = 1;
@@ -249,7 +233,7 @@ namespace FusionDemo
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 159);
+            this.splitter1.Location = new System.Drawing.Point(0, 201);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(948, 3);
             this.splitter1.TabIndex = 1;
@@ -257,21 +241,18 @@ namespace FusionDemo
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnAddUserToGroup);
-            this.panel2.Controls.Add(this.btnDeleteUser);
-            this.panel2.Controls.Add(this.btnCreateUser);
             this.panel2.Controls.Add(this.btnClear);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 162);
+            this.panel2.Location = new System.Drawing.Point(0, 204);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 391);
+            this.panel2.Size = new System.Drawing.Size(156, 349);
             this.panel2.TabIndex = 2;
             // 
             // btnAddUserToGroup
             // 
-            this.btnAddUserToGroup.Location = new System.Drawing.Point(12, 76);
+            this.btnAddUserToGroup.Location = new System.Drawing.Point(743, 104);
             this.btnAddUserToGroup.Name = "btnAddUserToGroup";
-            this.btnAddUserToGroup.Size = new System.Drawing.Size(127, 23);
+            this.btnAddUserToGroup.Size = new System.Drawing.Size(110, 23);
             this.btnAddUserToGroup.TabIndex = 4;
             this.btnAddUserToGroup.Text = "Add User To Group";
             this.btnAddUserToGroup.UseVisualStyleBackColor = true;
@@ -279,7 +260,7 @@ namespace FusionDemo
             // 
             // btnDeleteUser
             // 
-            this.btnDeleteUser.Location = new System.Drawing.Point(12, 45);
+            this.btnDeleteUser.Location = new System.Drawing.Point(396, 80);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(94, 23);
             this.btnDeleteUser.TabIndex = 2;
@@ -289,7 +270,7 @@ namespace FusionDemo
             // 
             // btnCreateUser
             // 
-            this.btnCreateUser.Location = new System.Drawing.Point(12, 16);
+            this.btnCreateUser.Location = new System.Drawing.Point(22, 156);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(94, 23);
             this.btnCreateUser.TabIndex = 1;
@@ -299,38 +280,82 @@ namespace FusionDemo
             // 
             // splitter2
             // 
-            this.splitter2.Location = new System.Drawing.Point(200, 162);
+            this.splitter2.Location = new System.Drawing.Point(156, 204);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(3, 391);
+            this.splitter2.Size = new System.Drawing.Size(3, 349);
             this.splitter2.TabIndex = 3;
             this.splitter2.TabStop = false;
             // 
             // rtbStatus
             // 
             this.rtbStatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rtbStatus.Location = new System.Drawing.Point(203, 162);
+            this.rtbStatus.Location = new System.Drawing.Point(159, 204);
             this.rtbStatus.Name = "rtbStatus";
-            this.rtbStatus.Size = new System.Drawing.Size(745, 96);
+            this.rtbStatus.Size = new System.Drawing.Size(789, 96);
             this.rtbStatus.TabIndex = 4;
             this.rtbStatus.Text = "";
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter3.Location = new System.Drawing.Point(203, 258);
+            this.splitter3.Location = new System.Drawing.Point(159, 300);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(745, 3);
+            this.splitter3.Size = new System.Drawing.Size(789, 3);
             this.splitter3.TabIndex = 5;
             this.splitter3.TabStop = false;
             // 
             // rtbResults
             // 
             this.rtbResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbResults.Location = new System.Drawing.Point(203, 261);
+            this.rtbResults.Location = new System.Drawing.Point(159, 303);
             this.rtbResults.Name = "rtbResults";
-            this.rtbResults.Size = new System.Drawing.Size(745, 292);
+            this.rtbResults.Size = new System.Drawing.Size(789, 250);
             this.rtbResults.TabIndex = 6;
             this.rtbResults.Text = "";
+            // 
+            // cmbUsersToDelete
+            // 
+            this.cmbUsersToDelete.FormattingEnabled = true;
+            this.cmbUsersToDelete.Location = new System.Drawing.Point(335, 49);
+            this.cmbUsersToDelete.Name = "cmbUsersToDelete";
+            this.cmbUsersToDelete.Size = new System.Drawing.Size(222, 21);
+            this.cmbUsersToDelete.TabIndex = 19;
+            // 
+            // btnGetUsers
+            // 
+            this.btnGetUsers.Location = new System.Drawing.Point(295, 80);
+            this.btnGetUsers.Name = "btnGetUsers";
+            this.btnGetUsers.Size = new System.Drawing.Size(95, 23);
+            this.btnGetUsers.TabIndex = 20;
+            this.btnGetUsers.Text = "Populate Users";
+            this.btnGetUsers.UseVisualStyleBackColor = true;
+            this.btnGetUsers.Click += new System.EventHandler(this.btnGetUsers_Click);
+            // 
+            // btnPopulateUsersAndGroups
+            // 
+            this.btnPopulateUsersAndGroups.Location = new System.Drawing.Point(581, 104);
+            this.btnPopulateUsersAndGroups.Name = "btnPopulateUsersAndGroups";
+            this.btnPopulateUsersAndGroups.Size = new System.Drawing.Size(156, 23);
+            this.btnPopulateUsersAndGroups.TabIndex = 21;
+            this.btnPopulateUsersAndGroups.Text = "Populate Users and Groups";
+            this.btnPopulateUsersAndGroups.UseVisualStyleBackColor = true;
+            this.btnPopulateUsersAndGroups.Click += new System.EventHandler(this.btnPopulateUsersAndGroups_Click);
+            // 
+            // cmbGroups
+            // 
+            this.cmbGroups.FormattingEnabled = true;
+            this.cmbGroups.Location = new System.Drawing.Point(631, 45);
+            this.cmbGroups.Name = "cmbGroups";
+            this.cmbGroups.Size = new System.Drawing.Size(222, 21);
+            this.cmbGroups.TabIndex = 22;
+            // 
+            // cmbUsersToAddToGroup
+            // 
+            this.cmbUsersToAddToGroup.FormattingEnabled = true;
+            this.cmbUsersToAddToGroup.Location = new System.Drawing.Point(631, 77);
+            this.cmbUsersToAddToGroup.Name = "cmbUsersToAddToGroup";
+            this.cmbUsersToAddToGroup.Size = new System.Drawing.Size(222, 21);
+            this.cmbUsersToAddToGroup.TabIndex = 23;
             // 
             // Form1
             // 
@@ -373,16 +398,18 @@ namespace FusionDemo
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Button btnCreateUser;
         private System.Windows.Forms.Button btnDeleteUser;
-        private System.Windows.Forms.TextBox txtUserToDelete;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtGroupIDToAddTo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtUserIDToAddToGroup;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAddUserToGroup;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbUsersToDelete;
+        private System.Windows.Forms.Button btnGetUsers;
+        private System.Windows.Forms.ComboBox cmbUsersToAddToGroup;
+        private System.Windows.Forms.ComboBox cmbGroups;
+        private System.Windows.Forms.Button btnPopulateUsersAndGroups;
     }
 }
 

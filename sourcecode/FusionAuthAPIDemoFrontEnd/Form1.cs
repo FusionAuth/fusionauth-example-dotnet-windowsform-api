@@ -9,6 +9,12 @@ namespace FusionDemo
 {
     public partial class Form1 : Form
     {
+        public enum PopulateType
+        {
+            Users = 0,
+            Groups = 1
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -57,20 +63,24 @@ namespace FusionDemo
         private async void txtDeleteUser_Click(object sender, EventArgs e)
         {
             LogStatus("Deleting User");
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            
-            var faClient = new FusionAuthClient();
-
-
-            ReturnValue userCreatedReturnValue = await faClient.DeleteUser(txtUserToDelete.Text);
-            LogResults($"User Deleted: {txtUserToDelete.Text}");
-
-
-            sw.Stop();
-            LogStatus("User Deletion Complete");
-            LogStatus($"{sw.Elapsed} (hh:mm:ss:ms)");
+            if (cmbUsersToDelete.SelectedIndex >= 0)
+            {
+                string userIdToDelete = (string)cmbUsersToDelete.SelectedValue;
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                var faClient = new FusionAuthClient();
+                ReturnValue userCreatedReturnValue = await faClient.DeleteUser(userIdToDelete);
+                LogResults($"User Deleted: {userIdToDelete}");
+                sw.Stop();
+                LogStatus("User Deletion Complete");
+                LogStatus($"{sw.Elapsed} (hh:mm:ss:ms)");
+                PopulateComboBox(cmbUsersToAddToGroup, PopulateType.Users);
+            }
+            else
+            {
+                LogStatus("Must select a user to delete.");
+            }
+           
         }
 
         //tag::btnAddUserToGroup[]
@@ -78,39 +88,48 @@ namespace FusionDemo
         {
             //FusionAuthClient is a class that contains the logic to call  the FusionAuth APIs
             var faClient = new FusionAuthClient();
+            var userIdToAdd = (string)cmbUsersToAddToGroup.SelectedValue;
+            var groupIdToAdd = (string)cmbGroups.SelectedValue;
 
-            List<GroupUser> users = new List<GroupUser>()
+            if (userIdToAdd != null && groupIdToAdd != null)
             {
-                new GroupUser() 
+                List<GroupUser> users = new List<GroupUser>()
                 {
-                    UserID = txtUserIDToAddToGroup.Text
-                }
-            };
+                    new GroupUser()
+                    {
+                        UserID = userIdToAdd
+                    }
+                };
 
-            Group group = new Group();
+                Group group = new Group();
 
-            group.ID = txtGroupIDToAddTo.Text;
-            group.Users = users;
+                group.ID = groupIdToAdd;
+                group.Users = users;
 
-            List<Group> groups = new List<Group>();
-            groups.Add(group);
+                List<Group> groups = new List<Group>();
+                groups.Add(group);
 
-            //perform custom validation logic here
-            if (IsGroupValid(group))
-            {
-                ReturnValue addUserToGroupReturnValue = await faClient.AddUserToGroup(groups);
-                if (addUserToGroupReturnValue.success == true)
+                //perform custom validation logic here
+                if (IsGroupValid(group))
                 {
-                    LogResults($"User has been added to the group: {addUserToGroupReturnValue.result}");
+                    ReturnValue addUserToGroupReturnValue = await faClient.AddUserToGroup(groups);
+                    if (addUserToGroupReturnValue.success == true)
+                    {
+                        LogResults($"User {(string)cmbUsersToAddToGroup.Text} has been added to the group: {(string)cmbGroups.Text}");
+                    }
+                    else
+                    {
+                        LogResults($"Adding the user to the group has failed. {addUserToGroupReturnValue.result}");
+                    }
                 }
                 else
                 {
-                    LogResults($"Adding the user to the group has failed. {addUserToGroupReturnValue.result}");
+                    LogResults($"User and/or group data provided is invalid");
                 }
-            }
+             }
             else
             {
-                LogResults($"User and/or group data provided is invalid");
+                LogResults($"No group or user selected.  Populate Users and Groups.");
             }
         }
         //end::btnAddUserToGroup[]
@@ -143,6 +162,39 @@ namespace FusionDemo
         {
             rtbStatus.Text = "";
             rtbResults.Text = "";
+        }
+
+        private void btnGetUsers_Click(object sender, EventArgs e)
+        {
+            PopulateComboBox(cmbUsersToDelete, PopulateType.Users);
+        }
+
+        private async void PopulateComboBox(ComboBox comboBoxToPopulate, PopulateType populateType)
+        {
+            var faClient = new FusionAuthClient();
+            Dictionary<string,string> collection = new Dictionary<string,string>();
+            if (populateType == PopulateType.Users)
+            {
+                collection = await faClient.GetDictionaryOfUsers();
+            }
+            else if (populateType == PopulateType.Groups)
+            {
+                collection = await faClient.GetDictionaryOfGroups();
+            }
+            
+            if (collection.Count > 0)
+            {
+                comboBoxToPopulate.DataSource = new BindingSource(collection, null);
+                comboBoxToPopulate.DisplayMember = "Value";
+                comboBoxToPopulate.ValueMember = "Key";
+                comboBoxToPopulate.SelectedItem = comboBoxToPopulate.Items[0];
+            }
+        }
+
+        private void btnPopulateUsersAndGroups_Click(object sender, EventArgs e)
+        {
+            PopulateComboBox(cmbUsersToAddToGroup, PopulateType.Users);
+            PopulateComboBox(cmbGroups, PopulateType.Groups);
         }
     }
 }
