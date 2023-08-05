@@ -11,11 +11,11 @@ Setup:
 		```
 		docker-compose up -d
 		```
-		- You will not need to access the FusionAuth admin interface for this demo, but needed here are the credentials.
+		- You will not need to access the FusionAuth admin interface for this demo, However, if needed or desired here are the credentials.
 			- Url: 	[http://localhost:9011](http://localhost:9011) 
 			- Admin Username: admin@example.com
 			- Admin Password: password
-			- 
+			  
 		> **_Note:_** If you ever want to reset the FusionAuth system, delete the volumes created by docker-compose by executing docker-compose down -v, then re-run docker-compose up -d.
 
 	- See [How to Run FusionAuth](https://fusionauth.io/docs/) in the FusionAuth documentation for alternatives.
