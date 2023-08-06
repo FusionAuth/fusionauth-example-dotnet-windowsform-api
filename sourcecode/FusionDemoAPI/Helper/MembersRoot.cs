@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace FusionDemoAPI.Helper
 {
-    //For GroupUser Object Serialization
-    public class MembersRoot
-    {
-        [JsonProperty(PropertyName = "members")]
-        public MemberGroups Members;
-    }
+  //For GroupUser Object Serialization
+  public class MembersRoot
+  {
+    [JsonProperty(PropertyName = "members")]
+    public MemberGroups Members;
+  }
 
-    public class MemberGroups
-    {
-        [JsonExtensionData]
-        public Dictionary<string, JToken> groups;
-    }
+  public class MemberGroups
+  {
+    [JsonExtensionData]
+    public Dictionary<string, JToken> groups;
+  }
 }
