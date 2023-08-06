@@ -47,6 +47,7 @@ namespace FusionDemo
                 if (userCreatedReturnValue.success == true)
                 {
                     LogResults($"User created with ID: {userCreatedReturnValue.result}");
+                    PopulateComboBox(cmbUsersToDelete, PopulateType.Users);
                 }
                 else
                 {
@@ -66,11 +67,12 @@ namespace FusionDemo
             if (cmbUsersToDelete.SelectedIndex >= 0)
             {
                 string userIdToDelete = (string)cmbUsersToDelete.SelectedValue;
+                string userNameToDelete = (string)cmbUsersToDelete.Text;
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
                 var faClient = new FusionAuthClient();
                 ReturnValue userCreatedReturnValue = await faClient.DeleteUser(userIdToDelete);
-                LogResults($"User Deleted: {userIdToDelete}");
+                LogResults($"User Deleted: {userNameToDelete} , id: {userIdToDelete}");
                 sw.Stop();
                 LogStatus("User Deletion Complete");
                 LogStatus($"{sw.Elapsed} (hh:mm:ss:ms)");
