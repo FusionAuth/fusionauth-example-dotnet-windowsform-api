@@ -91,6 +91,7 @@ namespace FusionDemo
     {
       //FusionAuthClient is a class that contains the logic to call  the FusionAuth APIs
       var faClient = new FusionAuthClient();
+      //Get the selected values from the dropdowns
       var userIdToAdd = (string)cmbUsersToAddToGroup.SelectedValue;
       var groupIdToAdd = (string)cmbGroups.SelectedValue;
 
@@ -105,7 +106,6 @@ namespace FusionDemo
                 };
 
         Group group = new Group();
-
         group.ID = groupIdToAdd;
         group.Users = users;
 

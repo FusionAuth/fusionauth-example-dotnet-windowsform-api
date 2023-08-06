@@ -71,7 +71,6 @@ namespace FusionDemoAPI
         returnVal.result = ex.Message;
       }
 
-
       return returnVal;
     }
     //end::CreateUser[]
