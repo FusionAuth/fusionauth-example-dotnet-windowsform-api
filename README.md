@@ -1,4 +1,4 @@
-# Example Windows Forms Applicaiton Using FusionAuth APIs
+# Example Windows Forms Application Using FusionAuth APIs
 
 ## Considerations
 - This is a sample Windows Form application utilizing the FusionAuth APIs in C#.
@@ -7,11 +7,11 @@
 
 ## Setup
 - You will need a working version of a FusionAuth Server to point the application to. 
-	- In the root directory of this repo you'll find a Docker compose file (docker-compose.yml) and an environment variables configurtion file (.env).  Assuming you have Docker installed on your machine, you can stand up FusionAuth on your manchine with:
+	- In the root directory of this repo you'll find a Docker compose file (docker-compose.yml) and an environment variables configuration file (.env).  Assuming you have Docker installed on your machine, you can stand up FusionAuth on your machine with:
 		```
 		docker-compose up -d
 		```
-		- The credentials for the instanse:
+		- The credentials for the instance:
 			- Url: 	[http://localhost:9011](http://localhost:9011) 
 			- Admin Username: admin@example.com
 			- Admin Password: password
@@ -28,7 +28,7 @@
 ## Usage
 Once the `App.config` settings are configured correctly the application will be able to connect to the FusionAuth server specified.  
 
-This applicaiton can do 3 things.
+This application can do 3 things.
 
 - Create User
 	- Enter the user information for the user and click the `Create User` button.
